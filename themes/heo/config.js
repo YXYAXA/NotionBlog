@@ -19,7 +19,7 @@ const CONFIG = {
   HEO_HERO_TITLE_2: '与思维认知',
   HEO_HERO_TITLE_3: 'Blog.YYAI.tech',
   HEO_HERO_TITLE_4: '记住网址不迷路',
-  HEO_HERO_TITLE_5: '轻松白嫖各种服务，尽在羊の语',
+  HEO_HERO_TITLE_5: '轻松白嫖，尽在羊の语',
   HEO_HERO_TITLE_LINK: 'https://blog.yyai.tech',
 
   // 英雄区显示三个置顶分类
