@@ -112,9 +112,9 @@ const CONFIG = {
   ],
 
   HEO_SOCIAL_CARD: true, // 是否显示右侧，点击加入社群按钮
-  HEO_SOCIAL_CARD_TITLE_1: '交流频道',
-  HEO_SOCIAL_CARD_TITLE_2: '加入我们的社群讨论分享',
-  HEO_SOCIAL_CARD_TITLE_3: '点击加入社群',
+  HEO_SOCIAL_CARD_TITLE_1: '智慧交互',
+  HEO_SOCIAL_CARD_TITLE_2: '免费使用各大顶级AI',
+  HEO_SOCIAL_CARD_TITLE_3: '点击跳转注册使用',
   HEO_SOCIAL_CARD_URL: 'https://www.yuychat.cn',
 
   // *****  以下配置无效，只是预留开发 ****
