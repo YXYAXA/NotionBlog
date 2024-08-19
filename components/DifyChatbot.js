@@ -1,27 +1,45 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function DifyChatbot() {
+  const chatClientRef = useRef(null);
+
   useEffect(() => {
-    // Load the Coze Web SDK script
-    const script = document.createElement('script');
-    script.src = 'https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js';
-    script.async = true;
-    script.onload = () => {
-      // Initialize the Coze Web SDK after the script has loaded
-      new window.CozeWebSDK.WebChatClient({
-        config: {
-          bot_id: '7404668511764611111',
-        },
-        componentProps: {
-          title: 'Coze',
-        },
-      });
+    let scriptElement = null;
+
+    const initializeChatbot = () => {
+      if (window.CozeWebSDK && !chatClientRef.current) {
+        chatClientRef.current = window.CozeWebSDK.WebChatClient({
+          config: {
+            bot_id: '7404668511764611111',
+          },
+          componentProps: {
+            title: 'Coze',
+          },
+        });
+      }
     };
-    document.body.appendChild(script);
+
+    const loadScript = () => {
+      scriptElement = document.createElement('script');
+      scriptElement.src = 'https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js';
+      scriptElement.async = true;
+      scriptElement.onload = initializeChatbot;
+      document.body.appendChild(scriptElement);
+    };
+
+    if (window.CozeWebSDK) {
+      initializeChatbot();
+    } else {
+      loadScript();
+    }
 
     return () => {
-      // Clean up the script tag when the component unmounts
-      document.body.removeChild(script);
+      if (scriptElement) {
+        document.body.removeChild(scriptElement);
+      }
+      if (chatClientRef.current && typeof chatClientRef.current.destroy === 'function') {
+        chatClientRef.current.destroy();
+      }
     };
   }, []);
 
