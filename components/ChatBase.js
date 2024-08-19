@@ -10,10 +10,10 @@ export default function ChatBase() {
     script.src = 'https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js';
     script.async = true;
     script.onload = () => {
-      // 等待脚本加载完成后检查 CozeWebSDK 是否存在
+      // 确保 CozeWebSDK 已加载
       if (typeof window.CozeWebSDK !== 'undefined') {
-        // 使用变量存储实例，避免 'no-new' 错误
-        const webChatClient = new window.CozeWebSDK.WebChatClient({
+        // 创建 WebChatClient 实例，但不保存到变量中
+        new window.CozeWebSDK.WebChatClient({
           config: {
             bot_id: '7404668511764611111',
           },
