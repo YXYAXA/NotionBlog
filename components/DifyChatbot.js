@@ -3,27 +3,28 @@ import { siteConfig } from '@/lib/config';
 
 export default function DifyChatbot() {
   useEffect(() => {
-    // 这里使用 siteConfig() 函数调用来获取配置值
-    if (!siteConfig('DIFY_CHATBOT_ENABLED')) {
-      return;
-    }
+    // 加载 Coze Web SDK 脚本
+    const script = document.createElement('script');
+    script.src = "https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js";
+    script.defer = true;
 
-    // 配置 DifyChatbot，同样需要调用 siteConfig() 获取相应的配置值
-    window.difyChatbotConfig = {
-      token: siteConfig('DIFY_CHATBOT_TOKEN'),
-      baseUrl: siteConfig('DIFY_CHATBOT_BASE_URL')
+    script.onload = () => {
+      // 初始化 Coze Web SDK
+      new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7404668511764611111', // 设置 bot_id
+        },
+        componentProps: {
+          title: 'Coze', // 设置标题
+        },
+      });
     };
 
-    // 加载 DifyChatbot 脚本
-    const script = document.createElement('script');
-    script.src = `${siteConfig('DIFY_CHATBOT_BASE_URL')}/embed.min.js`; // 注意调用 siteConfig()
-    script.id = siteConfig('DIFY_CHATBOT_TOKEN'); // 注意调用 siteConfig()
-    script.defer = true;
     document.body.appendChild(script);
 
     return () => {
       // 在组件卸载时清理 script 标签
-      const existingScript = document.getElementById(siteConfig('DIFY_CHATBOT_TOKEN')); // 注意调用 siteConfig()
+      const existingScript = document.querySelector(`script[src="${script.src}"]`);
       if (existingScript) document.body.removeChild(existingScript);
     };
   }, []); // 注意依赖数组为空，意味着脚本将仅在加载页面时执行一次
