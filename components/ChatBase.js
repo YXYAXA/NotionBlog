@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { siteConfig } from '@/lib/config';
 
 export default function ChatBase() {
   const clientRef = useRef(null);
@@ -12,7 +11,7 @@ export default function ChatBase() {
       if (window.CozeWebSDK) {
         clientRef.current = window.CozeWebSDK.WebChatClient({
           config: {
-            bot_id: siteConfig('COZE_BOT_ID'),
+            bot_id:'7404668511764611111',
           },
           componentProps: {
             title: 'Coze',
