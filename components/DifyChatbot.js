@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { siteConfig } from '@/lib/config';
 
 export default function DifyChatbot() {
   useEffect(() => {
@@ -9,13 +8,13 @@ export default function DifyChatbot() {
     script.defer = true;
 
     script.onload = () => {
-      // 初始化 Coze Web SDK
-      new CozeWebSDK.WebChatClient({
+      // eslint-disable-next-line no-undef
+      const webChatClient = new CozeWebSDK.WebChatClient({  // eslint-disable-line no-new
         config: {
-          bot_id: '7404668511764611111', // 设置 bot_id
+          bot_id: '7404668511764611111',
         },
         componentProps: {
-          title: 'Coze', // 设置标题
+          title: 'Coze',
         },
       });
     };
