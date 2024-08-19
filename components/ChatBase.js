@@ -10,10 +10,15 @@ export default function ChatBase() {
     return <></>
   }
 
-  return <iframe
-        src={`https://www.chatbase.co/chatbot-iframe/${siteConfig('CHATBASE_ID')}`}
-        width="100%"
-        style={{ height: '100%', minHeight: '700px' }}
-        frameborder="0"
-    ></iframe>
+  return       <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js"></script>
+      <script>
+          new CozeWebSDK.WebChatClient({
+            config: {
+              bot_id: '7404668511764611111',
+            },
+            componentProps: {
+              title: '羊语AI',
+            },
+          });
+      </script>
 }
