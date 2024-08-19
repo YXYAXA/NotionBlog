@@ -11,7 +11,7 @@ export default function ChatBase() {
   }
 
   return <iframe
-        src={`https://image.yyapi.fun/coze`}
+        src={`https://image.yyapi.fun/coze.html`}
         width="100%"
         style={{ height: '100%', minHeight: '700px' }}
         frameborder="0"
