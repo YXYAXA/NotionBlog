@@ -1,31 +1,43 @@
-import { siteConfig } from '@/lib/config'
+import { siteConfig } from '@/lib/config';
+import { useEffect } from 'react';
 
-/**
- * 这是一个嵌入组件，可以在任意位置全屏显示您的chat-base对话框
- * 暂时没有页面引用
- * 因为您可以直接用内嵌网页的方式放入您的notion中 https://www.chatbase.co/chatbot-iframe/${siteConfig('CHATBASE_ID')}
- */
 export default function ChatBase() {
+  useEffect(() => {
+    // 检查是否有 CHATBASE_ID
+    if (!siteConfig('CHATBASE_ID')) return;
+
+    // 加载外部脚本
+    const script = document.createElement('script');
+    script.src = 'https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js';
+    script.async = true;
+    script.onload = () => {
+      // 初始化 Coze Web SDK
+      new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7404668511764611111',
+        },
+        componentProps: {
+          title: 'Coze',
+        },
+      });
+    };
+
+    document.body.appendChild(script);
+
+    // 清理函数，防止内存泄漏
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  // 如果没有 CHATBASE_ID，则不渲染组件
   if (!siteConfig('CHATBASE_ID')) {
-    return <></>
+    return <></>;
   }
 
   return (
-    <>
-      <Script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js" />
-      <Script id="chatbase-config">
-        {`
-          new CozeWebSDK.WebChatClient({
-            config: {
-              bot_id: '7404668511764611111',
-            },
-            componentProps: {
-              title: '羊语AI',
-            },
-          });
-        `}
-      </Script>
-    </>
+    <div id="coze-chat-container" style={{ width: '100%', height: '100%', minHeight: '700px' }}>
+      {/* 这个 div 将是 Coze Web SDK 挂载的位置 */}
+    </div>
   );
-
 }
