@@ -1,47 +1,19 @@
-import React, { useEffect } from 'react';
-import Script from 'next/script';
+import { siteConfig } from '@/lib/config'
 
+/**
+ * 这是一个嵌入组件，可以在任意位置全屏显示您的chat-base对话框
+ * 暂时没有页面引用
+ * 因为您可以直接用内嵌网页的方式放入您的notion中 https://www.chatbase.co/chatbot-iframe/${siteConfig('CHATBASE_ID')}
+ */
 export default function ChatBase() {
-  useEffect(() => {
-    // Initialize Coze Web SDK after the script has loaded
-    const initCozeSDK = () => {
-      if (window.CozeWebSDK) {
-        // eslint-disable-next-line no-new
-        new window.CozeWebSDK.WebChatClient({
-          config: {
-            bot_id: '7404668511764611111',
-          },
-          componentProps: {
-            title: 'Coze',
-          },
-        });
-      }
-    };
+  if (!siteConfig('CHATBASE_ID')) {
+    return <></>
+  }
 
-    // Check if the SDK is already loaded
-    if (window.CozeWebSDK) {
-      initCozeSDK();
-    } else {
-      // If not, set up a listener for when it's loaded
-      window.addEventListener('CozeWebSDKLoaded', initCozeSDK);
-    }
-
-    // Cleanup function
-    return () => {
-      window.removeEventListener('CozeWebSDKLoaded', initCozeSDK);
-    };
-  }, []);
-
-  return (
-    <>
-      <Script
-        src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js"
-        strategy="afterInteractive"
-        onLoad={() => {
-          window.dispatchEvent(new Event('CozeWebSDKLoaded'));
-        }}
-      />
-      <div id="coze-chat-container" style={{ width: '100%', height: '100%', minHeight: '700px' }} />
-    </>
-  );
+  return <iframe
+        src={`https://www.chatbase.co/chatbot-iframe/${siteConfig('CHATBASE_ID')}`}
+        width="100%"
+        style={{ height: '100%', minHeight: '700px' }}
+        frameborder="0"
+    ></iframe>
 }
