@@ -10,15 +10,20 @@ export default function ChatBase() {
     return <></>
   }
 
-  return       <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js"></script>
+  return (
+    <>
+      <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/cn/index.js"></script>
       <script>
-          new CozeWebSDK.WebChatClient({
-            config: {
-              bot_id: '7404668511764611111',
-            },
-            componentProps: {
-              title: '羊语AI',
-            },
-          });
+        new CozeWebSDK.WebChatClient({
+          config: {
+            bot_id: '7404668511764611111',
+          },
+          componentProps: {
+            title: '羊语AI',
+          }
+        });
       </script>
+    </>
+  );
+
 }
