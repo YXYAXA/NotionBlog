@@ -6,6 +6,7 @@ export default function ChatBase() {
     // Initialize Coze Web SDK after the script has loaded
     const initCozeSDK = () => {
       if (window.CozeWebSDK) {
+        // eslint-disable-next-line no-new
         new window.CozeWebSDK.WebChatClient({
           config: {
             bot_id: '7404668511764611111',
