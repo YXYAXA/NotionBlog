@@ -11,9 +11,10 @@ export default function ChatBase() {
   }
 
   return <iframe
-        src={`https://www.chatbase.co/chatbot-iframe/${siteConfig('CHATBASE_ID')}`}
+        src="https://share.fastgpt.in/chat/share?shareId=5g292sg65ng86xg4yneld3s6"
         width="100%"
         style={{ height: '100%', minHeight: '700px' }}
         frameborder="0"
+        allow="*"
     ></iframe>
 }
