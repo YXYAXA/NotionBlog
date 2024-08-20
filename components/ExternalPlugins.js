@@ -173,7 +173,7 @@ const ExternalPlugin = props => {
             defer
           />
           <script>
-            console.log("Chat box loaded")
+            console.log(&quot;Chat box loaded&quot;)
           </script>
         </>
       )}
