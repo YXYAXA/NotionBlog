@@ -112,10 +112,10 @@ const CONFIG = {
   ],
 
   HEO_SOCIAL_CARD: true, // 是否显示右侧，点击加入社群按钮
-  HEO_SOCIAL_CARD_TITLE_1: '智慧交互',
-  HEO_SOCIAL_CARD_TITLE_2: '免费使用各大顶级AI',
-  HEO_SOCIAL_CARD_TITLE_3: '点击跳转注册使用',
-  HEO_SOCIAL_CARD_URL: 'https://www.yuychat.cn',
+  HEO_SOCIAL_CARD_TITLE_1: '大额流量卡',
+  HEO_SOCIAL_CARD_TITLE_2: '全国大流量卡 免费领',
+  HEO_SOCIAL_CARD_TITLE_3: '点击跳转领取',
+  HEO_SOCIAL_CARD_URL: 'https://172.lot-ml.com/ProductEn/Index/2fa030c7b264ceae',
 
   // *****  以下配置无效，只是预留开发 ****
   // 菜单配置
